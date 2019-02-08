@@ -1,12 +1,15 @@
-# rjh-personal-page
+# Rob.Hilgefort.me
 
-Personal page for @rjhilgefort
+Personal page for [@rjhilgefort](https://twitter.com/rjhilgefort)
 
-## Site
+![](./screenshots/homepage.png)
 
-https://robhilgefort.com
-https://rob.hilgefort.me
+### Live At
 
-## Resources
+- [https://rob.hilgefort.me](https://rob.hilgefort.me)
+- [https://robhilgefort.com](https://robhilgefort.com)
 
-- This is based on https://github.com/codebushi/gatsby-starter-dimension
+## Built With
+
+- Framework: [Gatsbyjs](https://www.gatsbyjs.org/)
+- Theme: [gatsby-starter-dimension](https://github.com/codebushi/gatsby-starter-dimension)
