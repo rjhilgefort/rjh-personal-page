@@ -42,7 +42,7 @@ class PDF extends Component {
 
   render() {
     const { pageNumber, numPages } = this.state
-    const { file } = this.props
+    const { file, scale=1.5 } = this.props
 
     return (
       <div>
@@ -50,10 +50,10 @@ class PDF extends Component {
           file={file}
           onLoadSuccess={this.onDocumentLoadSuccess}
         >
-          <Page pageNumber={pageNumber} />
+          <Page pageNumber={pageNumber} scale={scale}/>
         </Document>
         <button onClick={() => this.prevPage()}>Prev Page</button>
-        <span style={{ marginLeft: '100px', marginRight: '100px' }}>Page {pageNumber} of {numPages}</span>
+        <span style={{ margin: '0 283px' }}>Page {pageNumber} of {numPages}</span>
         <button onClick={() => this.nextPage()}>Next Page</button>
       </div>
     );

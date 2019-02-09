@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withProps } from 'recompose'
+import { toUpper } from 'ramda'
 import aboutPic from '../images/profilepic-serious.jpg'
 import resumePdf from '../images/Rob-Hilgefort-Resume.pdf'
 import PDF from './PDF'
 
-const toUpper = x => x.toUpperCase()
 const activeStringWhenEq = a => b => a === b ? 'active' : ''
 const timeoutStringOfBool = x => x ? 'timeout' : ''
 
@@ -60,7 +60,7 @@ const Main = ({
 
       <ArticleModal name="about">
         <Image src={aboutPic} />
-        <p>
+        <p style={{ fontSize: '150%' }}>
           I was born and raised in Cincinnati, OH, and moved to Denver in 2018 to enjoy the mountains as my wife and I start a family. We had our first child in August of 2017 and both have really enjoyed becoming parents. Aside from spending time raising a little girl, I'm enthusiastic about the outdoors! Specifically, I love road biking, mountain biking, road running, trail running, hiking, kayaking, skiing, snowboarding, swimming, and camping. I also love table top games, coding, mechanical keyboards, reading, and building things in general.
         </p>
       </ArticleModal>
@@ -68,6 +68,7 @@ const Main = ({
       <ArticleModal name="resume">
         <PDF file={resumePdf}/>
       </ArticleModal>
+
     </div>
   )
 }
