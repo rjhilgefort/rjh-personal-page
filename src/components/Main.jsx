@@ -1,31 +1,38 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import { withProps } from 'recompose'
 import aboutPic from '../images/profilepic-serious.jpg'
 
-class Main extends React.Component {
-  render() {
+const toUpper = x => x.toUpperCase()
+const activeStringWhenEq = a => b => a === b ? 'active' : ''
+const timeoutStringOfBool = x => x ? 'timeout' : ''
 
-    let close = <div className="close" onClick={() => {this.props.onCloseArticle()}}></div>
+const Close = ({ onCloseArticle }) => (
+  <div className="close" onClick={onCloseArticle}></div>
+)
+const Image = ({ src }) => (
+  <span className="image main"><img src={src} alt="" /></span>
+)
 
-    return (
-      <div ref={this.props.setWrapperRef} id="main" style={this.props.timeout ? {display: 'flex'} : {display: 'none'}}>
+const ArticleModalTemplate = ({ 
+  name,
+  article,
+  articleTimeout,
+  CloseButton,
+  children,
+}) => (
+  <article 
+    id={name} 
+    className={`${activeStringWhenEq(article)(name)} ${timeoutStringOfBool(articleTimeout)}`} 
+    style={{display:'none'}}
+  >
+    <h2 className="major">{toUpper(name)}</h2>
+    {children}
+    <CloseButton/>
+  </article>
+)
 
-        <article id="about" className={`${this.props.article === 'about' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
-          <h2 className="major">About</h2>
-          <span className="image main"><img src={aboutPic} alt="" /></span>
-          <p>
-            I was born and raised in Cincinnati, OH, and moved to Denver in 2018 to enjoy the mountains as my wife and I start a family. We had our first child in August of 2017 and both have really enjoyed becoming parents. Aside from spending time raising a little girl, I'm enthusiastic about the outdoors! Specifically, I love road biking, mountain biking, road running, trail running, hiking, kayaking, skiing, snowboarding, swimming, and camping. I also love table top games, coding, mechanical keyboards, reading, and building things in general.
-          </p>
-          {close}
-        </article>
-
-      </div>
-    )
-  }
-}
-
-Main.propTypes = {
+const PropTypesT = {
   route: PropTypes.object,
   article: PropTypes.string,
   articleTimeout: PropTypes.bool,
@@ -33,5 +40,38 @@ Main.propTypes = {
   timeout: PropTypes.bool,
   setWrapperRef: PropTypes.func.isRequired,
 }
+const Main = ({
+  article,
+  articleTimeout,
+  timeout,
+  onCloseArticle,
+  setWrapperRef,
+}) => {
+  const ArticleModal = withProps({
+    article,
+    articleTimeout,
+    CloseButton: withProps({ onCloseArticle })(Close),
+  })(ArticleModalTemplate)
+
+  return (
+    <div ref={setWrapperRef} id="main" style={timeout ? {display: 'flex'} : {display: 'none'}}>
+
+      <ArticleModal name="about">
+        <Image src={aboutPic} />
+        <p>
+          I was born and raised in Cincinnati, OH, and moved to Denver in 2018 to enjoy the mountains as my wife and I start a family. We had our first child in August of 2017 and both have really enjoyed becoming parents. Aside from spending time raising a little girl, I'm enthusiastic about the outdoors! Specifically, I love road biking, mountain biking, road running, trail running, hiking, kayaking, skiing, snowboarding, swimming, and camping. I also love table top games, coding, mechanical keyboards, reading, and building things in general.
+        </p>
+      </ArticleModal>
+
+      <ArticleModal name="resume">
+        <p>
+          Hi! I'm a real boy!
+        </p>
+      </ArticleModal>
+    </div>
+  )
+}
+
+Main.propTypes = PropTypesT
 
 export default Main
