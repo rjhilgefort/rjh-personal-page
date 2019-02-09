@@ -1,3 +1,6 @@
+// TODO: Fix the `a` to be a button and style accordingly
+//       https://github.com/rjhilgefort/rjh-personal-page/issues/5
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -17,8 +20,8 @@ const Header = (props) => (
         </div>
         <nav>
             <ul>
-                <li><button onClick={() => {props.onOpenArticle('about')}}>About</button></li>
-                <li><button onClick={() => {props.onOpenArticle('resume')}}>Resume</button></li>
+                <li><a onClick={() => {props.onOpenArticle('about')}}>About</a></li>
+                <li><a onClick={() => {props.onOpenArticle('resume')}}>Resume</a></li>
             </ul>
         </nav>
     </header>
