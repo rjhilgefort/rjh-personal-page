@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withProps } from 'recompose'
 import aboutPic from '../images/profilepic-serious.jpg'
+import resumePdf from '../images/Rob-Hilgefort-Resume.pdf'
+import PDF from './PDF'
 
 const toUpper = x => x.toUpperCase()
 const activeStringWhenEq = a => b => a === b ? 'active' : ''
@@ -64,9 +66,7 @@ const Main = ({
       </ArticleModal>
 
       <ArticleModal name="resume">
-        <p>
-          Hi! I'm a real boy!
-        </p>
+        <PDF file={resumePdf}/>
       </ArticleModal>
     </div>
   )
