@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withProps } from 'recompose'
-import aboutPic from '../images/profilepic-serious.jpg'
-import resumePdf from '../images/Rob-Hilgefort-Resume.pdf'
+import ABOUT_PIC from '../images/profilepic-ironman.jpg'
+import RESUME from '../images/Rob-Hilgefort-Resume.pdf'
 import ArticleModalTemplate from './ArticleModalTemplate'
 import PDF from './PDF'
 
@@ -10,7 +10,9 @@ const Close = ({ onCloseArticle }) => (
   <div className="close" onClick={onCloseArticle}></div>
 )
 const Image = ({ src }) => (
-  <span className="image main"><img src={src} alt="" /></span>
+  <span className="image main">
+    <img src={src} alt="" />
+  </span>
 )
 
 const PropTypesT = {
@@ -35,19 +37,29 @@ const Main = ({
   })(ArticleModalTemplate)
 
   return (
-    <div ref={setWrapperRef} id="main" style={timeout ? {display: 'flex'} : {display: 'none'}}>
-
+    <div
+      ref={setWrapperRef}
+      id="main"
+      style={timeout ? { display: 'flex' } : { display: 'none' }}
+    >
       <ArticleModal name="about">
-        <Image src={aboutPic} />
+        <Image src={ABOUT_PIC} />
         <p style={{ fontSize: '125%' }}>
-          I was born and raised in Cincinnati, OH, and moved to Denver in 2018 to enjoy the mountains as my wife and I start a family. We had our first child in August of 2017 and both have really enjoyed becoming parents. Aside from spending time raising a little girl, I'm enthusiastic about the outdoors! Specifically, I love road biking, mountain biking, road running, trail running, hiking, kayaking, skiing, snowboarding, swimming, and camping. I also love table top games, coding, mechanical keyboards, reading, and building things in general.
+          I was born and raised in Cincinnati, OH, and moved to Denver in 2018
+          to enjoy the mountains as my wife and I start a family. We had our
+          first child in August of 2017 and both have really enjoyed becoming
+          parents. Aside from spending time raising a little girl, I'm
+          enthusiastic about the outdoors! Specifically, I love road biking,
+          mountain biking, road running, trail running, hiking, kayaking,
+          skiing, snowboarding, swimming, and camping. I also love table top
+          games, coding, mechanical keyboards, reading, and building things in
+          general.
         </p>
       </ArticleModal>
 
       <ArticleModal name="resume">
-        <PDF file={resumePdf}/>
+        <PDF file={RESUME} />
       </ArticleModal>
-
     </div>
   )
 }
